@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon shortcut" type="image/ico" href="https://i.nfz.yecdn.com/favicon.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>neoFelhz's Lab</title>
+    <meta name="description" content="Here is the lab of neoFelhz">
+    <meta name="keywords" content="neoFelhz, neofelhz, Test, Lab, API">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/spectre.css@0.5.0/dist/spectre.min.css,npm/spectre.css@0.5.0/dist/spectre-exp.min.css,npm/spectre.css@0.5.0/dist/spectre-icons.min.css">
+    <script>window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date; ga('create', 'UA-83054354-6', 'auto'); ga('send', 'pageview');</script>
+    <script src='https://s.nfz.yecdn.com/static/js/jquery.ag.3.js' async></script>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="text-center" style="margin: 2rem">微博图片反查上传者</h3>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column col-sm-12 col-md-8 col-6 col-mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- form input control -->
+                        <p><a href="https://www.v2ex.com/t/388152" target="_blank">反查原理</a></p>
+                        <blockquote>提取图片文件名前 8 位，16 进制转成 10 进制后就可以得到用户 uid</blockquote>
+                        <div class="form-group">
+                            <label class="form-label" for="picUrl">微博图片 URL</label>
+                            <input class="form-input" id="picUrl" type="url" oninput="weiboHack()" placeholder="https://wx2.sinaimg.cn/large/006ApkL3gy1fhagkfqwsvj30k60sgkgk.jpg">
+                        </div>
+                        <p id="uidUrl"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function idx(c) {
+            c = c.charCodeAt();
+            if (c >= 48 && c <= 57) return c - 48;
+            if (c >= 97 && c <= 122) return c - 97 + 10;
+            return c - 65 + 36;
+        }
+        function getUid(url) {
+            url = url.replace(/\.\w+$/g, '');
+            var hash = url.match(/[0-9a-zA-Z]{32}$/);
+            if (hash == null) return '';
+            hash = hash[0].slice(0, 8);
+            var uid = 0;
+            if (hash[0] == '0' && hash[1] == '0') k = 62;
+            else k = 16;
+            for (i = 0; i < 8; i++)uid = uid * k + idx(hash[i]);
+            var url = "https://weibo.com/u/" + uid;
+            return '<br><span>图片上传者：</span><a href="' + url + '" target="_blank">' + url + '</a>';
+        }
+        function weiboHack() {
+            var url = document.getElementById("picUrl").value;
+            document.getElementById("uidUrl").innerHTML = getUid(url);
+        }
+    </script>
+</body>

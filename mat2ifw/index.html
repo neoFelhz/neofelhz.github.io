@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>MAT2IFW - neoFelhz's Lab</title>
+    <link rel="icon shortcut" href="/mat2ifw/icons/icon_24.png">
+    <link rel="icon" href="/mat2ifw/icons/icon_72.png">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="快速转换 MAT 备份文件为 IFW 格式的 xml 文件">
+    <meta name="keywords" content="neoFelhz, LetITFly BBS, MAT BBS, MyAndroidTools, IFW,">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
+    <link rel="manifest" href="/mat2ifw/manifest.json">
+    <meta property="og:url" content="https://lab.nfz.moe/mat2ifw/">
+    <meta property="og:type" content="tools">
+    <meta property="og:title" content="MAT2IFW - neoFelhz's Labs">
+    <meta property="og:image" content="/mat2ifw/icons/icon_72.png">
+    <meta property="og:description" content="快速转换 MAT 备份文件为 IFW 格式的 xml 文件">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://cdnjs.cat.net/ajax/libs/mdui/0.3.0/css/mdui.min.css" rel="stylesheet">
+    <script>window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date; ga('create', 'UA-83054354-6', 'auto'); ga('send', 'pageview');</script>
+    <script src='https://s.nfz.yecdn.com/static/js/jquery.ag.3.js' async></script>
+</head>
+
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-grey mdui-theme-accent-red">
+    <header class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+            <i class="mdui-icon material-icons">pan_tool</i>
+            <a href="#" class="mdui-typo-headline mdui-hidden-xs">MAT2IFW</a>
+        </div>
+    </header>
+
+    <div class="mdui-container">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">把 MAT 的备份文件复制到这里</label>
+            <textarea class="mdui-textfield-input" type="text" name="input" id="input"></textarea>
+        </div>
+        <input class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" type="button" value="转换" onclick="get();">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">转换后的 IFW 在这里输出</label>
+            <textarea class="mdui-textfield-input" id="output" type="text"></textarea>
+        </div>
+        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="copy" data-clipboard-target="#output"  onclick="mdui.snackbar({message: '已经复制到剪贴板', timeout: 1000});">把转换后的 IFW 复制到剪贴板</button>
+    </div>
+    <script src="https://cdnjs.cat.net/ajax/libs/mdui/0.3.0/js/mdui.min.js"></script>
+    <script src="https://cdnjs.cat.net/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script type="text/javascript">
+        function get() {
+            var pattern = /^[a-z][a-z0-9_\/\$]*(\.[a-z0-9_\/\$]+)+[0-9a-z_\/\$]$/i;
+            var names = document.getElementById("input").value.split('\n');
+            var ifw = "<rules>\n";
+            var type = "";
+            for (var typeLoop = 0; typeLoop < 3; typeLoop++) {
+                switch (typeLoop) {
+                    case 0:
+                        type = "broadcast";
+                        break;
+                    case 1:
+                        type = "service";
+                        break;
+                    case 2:
+                        type = "activity";
+                }
+                ifw = ifw + "  <" + type + " block=\"true\" log=\"false\">\n";
+                for (var nameLoop = 0; nameLoop < names.length; nameLoop++) {
+                    if (pattern.test(names[nameLoop])) {
+                        ifw = ifw + "    <component-filter name=\"" + names[nameLoop] + "\" />\n";
+                    };
+                };
+                ifw = ifw + "  </" + type + ">\n";
+            };
+            ifw = ifw + "</rules>";
+            document.getElementById("output").value = ifw;
+        }
+    </script>
+    <script>
+        new Clipboard('#copy');
+    </script>
+    <script>
+        var serviceWorkerUri = './sw.js'; if ('serviceWorker' in navigator) { navigator.serviceWorker.register(serviceWorkerUri, { scope: '/mat2ifw/' }).then(function () { if (navigator.serviceWorker.controller) { console.log('Assets cached by the controlling service worker toolbox.') } else { console.log('Please reload this page to allow the service worker to handle network operations.') } }).catch(function (error) { console.log('ERROR: ' + error) }) } else { console.log('Service workers are not supported in the current browser.') }; window.addEventListener('beforeinstallprompt', event => { event.userChoice.then(result => { console.log(result.outcome) }) });
+    </script>
+</body>
+
+</html>

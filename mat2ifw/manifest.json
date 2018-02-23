@@ -1,0 +1,38 @@
+{
+  "name": "MAT2IFW",
+  "short_name": "MAT2IFW",
+  "theme_color":"#546e7a",
+  "background_color":"#eeeeee",
+  "display":"standalone",
+  "orientation":"portrait",
+  "Scope": "/mat2ifw/",
+  "start_url": "/mat2ifw/",
+  "icons": [
+    {
+      "src": "/mat2ifw/icons/icon_24.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    },
+    {
+      "src": "/mat2ifw/icons/icon_48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/mat2ifw/icons/icon_72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/mat2ifw/icons/icon_96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/mat2ifw/icons/icon_144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "splash_pages": null
+}
