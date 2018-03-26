@@ -1,0 +1,10 @@
+[[headers]]
+  for = "/*" # This defines which paths this specific [[headers]] block will cover.
+  [headers.values]
+    X-Load-Balancer = "healthy"
+    X-Backend-Server = "US-LAX-0x0F-GCP"
+    X-GSLB = "CDN-CloudFlare-DASH"
+    Link = '''
+    <https://ga.fir.im>; rel=preconnect; crossorigin,
+    <https://cdn.jsdelivr.net>; rel=preconnect; crossorigin,
+    '''
