@@ -40,8 +40,8 @@
                         <span id="neofelhz-assets-month"></span>
                         </span>
                         <a href="https://www.jsdelivr.com/package/gh/neofelhz/assets" class="ml-2" target="_blank">View detail</a>
-                        <!--<br>
-                        <span class="h6 text-error" id="neofelhz-assets-year"></span>-->
+                        <br>
+                        <span class="h6 text-error" id="neofelhz-assets-year"></span>
                     </div>
                 </div>
             </div>
@@ -56,8 +56,8 @@
                         <span id="cloudhammer-site-month"></span>
                         </span>
                         <a href="https://www.jsdelivr.com/package/gh/cloudhammer/site" class="ml-2" target="_blank">View detail</a>
-                        <!--<br>
-                            <span class="h6 text-error" id="neofelhz-assets-year"></span>-->
+                        <br>
+                        <span class="h6 text-error" id="neofelhz-assets-year"></span>
                     </div>
                 </div>
             </div>
@@ -72,8 +72,8 @@
                         <span id="cloudhammer-clients-month"></span>
                         </span>
                         <a href="https://www.jsdelivr.com/package/gh/cloudhammer/clients" class="ml-2" target="_blank">View detail</a>
-                        <!--<br>
-                            <span class="h6 text-error" id="neofelhz-assets-year"></span>-->
+                        <br>
+                        <span class="h6 text-error" id="neofelhz-assets-year"></span>
                     </div>
                 </div>
             </div>
@@ -88,8 +88,8 @@
                         <span id="cloudhammer-docsassets-month"></span>
                         </span>
                         <a href="https://www.jsdelivr.com/package/gh/cloudhammer/cloudhammerdocsassets" class="ml-2" target="_blank">View detail</a>
-                        <!--<br>
-                        <span class="h6 text-error" id="cloudhammer-docsassets-year"></span>-->
+                        <br>
+                        <span class="h6 text-error" id="cloudhammer-docsassets-year"></span>
                     </div>
                 </div>
             </div>
@@ -104,8 +104,8 @@
                         <span id="materialcdn-gh-month"></span>
                         </span>
                         <a href="https://www.jsdelivr.com/package/gh/viosey/hexo-theme-material" class="ml-2" target="_blank">View detail</a>
-                        <!--<br>
-                                <span class="h6 text-error" id="neofelhz-assets-year"></span>-->
+                        <br>
+                        <span class="h6 text-error" id="neofelhz-assets-year"></span>
                     </div>
                 </div>
             </div>
@@ -120,8 +120,8 @@
                         <span id="materialcdn-npm-month"></span>
                         </span>
                         <a href="https://www.jsdelivr.com/package/npm/hexo-material" class="ml-2" target="_blank">View detail</a>
-                        <!--<br>
-                                    <span class="h6 text-error" id="neofelhz-assets-year"></span>-->
+                        <br>
+                        <span class="h6 text-error" id="neofelhz-assets-year"></span>
                     </div>
                 </div>
             </div>
@@ -130,26 +130,44 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.1"></script>
     <script type="text/javascript">
-        $.getJSON('https://data.jsdelivr.com/v1/package/gh/neofelhz/assets/stats/date/month', function(data) {
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/neofelhz/assets/stats/month', function(data) {
             $('#neofelhz-assets-month').html(data.total + ' hits/month')
         });
-        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/site/stats/date/month', function(data) {
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/neofelhz/assets/stats/year', function(data) {
+            $('#neofelhz-assets-year').html(data.total + ' hits/year')
+        });
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/site/stats/month', function(data) {
             $('#cloudhammer-site-month').html(data.total + ' hits/month')
         });
-        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/clients/stats/date/month', function(data) {
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/site/stats/year', function(data) {
+            $('#cloudhammer-site-year').html(data.total + ' hits/year')
+        });
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/clients/stats/month', function(data) {
             $('#cloudhammer-clients-month').html(data.total + ' hits/month')
         });
-        $.getJSON('https://data.jsdelivr.com/v1/package/gh/viosey/hexo-theme-material/stats/date/month', function(data) {
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/clients/stats/year', function(data) {
+            $('#cloudhammer-clients-year').html(data.total + ' hits/year')
+        });
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/viosey/hexo-theme-material/stats/month', function(data) {
             $('#materialcdn-gh-month').html(data.total + ' hits/month')
         });
-        $.getJSON('https://data.jsdelivr.com/v1/package/npm/hexo-material/stats/date/month', function(data) {
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/viosey/hexo-theme-material/stats/year', function(data) {
+            $('#materialcdn-gh-year').html(data.total + ' hits/year')
+        });
+        $.getJSON('https://data.jsdelivr.com/v1/package/npm/hexo-material/stats/month', function(data) {
             $('#materialcdn-npm-month').html(data.total + ' hits/month')
-        })
-        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/cloudhammerdocsassets/stats/date/month', function(data) {
+        });
+        $.getJSON('https://data.jsdelivr.com/v1/package/npm/hexo-material/stats/year', function(data) {
+            $('#materialcdn-npm-year').html(data.total + ' hits/year')
+        });
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/cloudhammerdocsassets/stats/month', function(data) {
             $('#cloudhammer-docsassets-month').html(data.total + ' hits/month')
-        })
+        });
+        $.getJSON('https://data.jsdelivr.com/v1/package/gh/cloudhammer/cloudhammerdocsassets/stats/year', function(data) {
+            $('#cloudhammer-docsassets-year').html(data.total + ' hits/year')
+        });
     </script>
 </body>
 
