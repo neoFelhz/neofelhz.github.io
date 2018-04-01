@@ -1,17 +1,17 @@
 "use strict";
 (function() {
-    self.importScripts("https://cdnjs.cat.net/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js");
+    self.importScripts("https://cdnjs.loli.net/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js");
     self.toolbox.options.debug = false;
     self.toolbox.options.networkTimeoutSeconds = 5;
     self.toolbox.router.get("/(.*)", self.toolbox.fastest, {
-        origin: /cdnjs\.cat\.net/,
+        origin: /cdnjs\.loli\.net/,
         cache: {
             name: "staticAssetsCache",
             maxEntries: 100
         }
     });
     self.toolbox.router.get("/(.*)", self.toolbox.fastest, {
-        origin: /s\.nfz\.yecdn\.com/,
+        origin: /cdn\.jsdelivr\.net/,
         cache: {
             name: "staticAssetsCache",
             maxEntries: 100
