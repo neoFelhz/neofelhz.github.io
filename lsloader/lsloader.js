@@ -37,7 +37,7 @@
         return val
     }
 
-    versionString = "/*" + (window.materialVersion || 'unknownVersion') + "*/";
+    versionString = "/*" + (window.lsversion || 'noVersion') + "*/";
 
     lsloader.clean = function () {
         try {
